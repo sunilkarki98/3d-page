@@ -18,17 +18,14 @@ const Curtains = ({ onAnimationComplete }) => {
       { height: "100vh", duration: 1.5, ease: "power2.out" }
     );
 
-    // 2. Seam fades out BEFORE curtain slides
-    tl.to(seamRef.current, { opacity: 0, duration: 0.5 }, "+=0.1");
-
-    // 3. Curtains lift slightly to mimic stage lift
+    // 2. Curtains lift slightly to mimic stage lift
     tl.to(
       [leftCurtainRef.current, rightCurtainRef.current],
       { y: "-10px", duration: 0.4, ease: "power1.out" },
-      "-=0.2"
+      "+=0.1"
     );
 
-    // 4. Curtains slide off screen
+    // 3. Curtains slide away while seam fades out simultaneously
     tl.to(
       leftCurtainRef.current,
       {
@@ -37,7 +34,7 @@ const Curtains = ({ onAnimationComplete }) => {
         duration: 2,
         ease: "power2.inOut",
       },
-      "+=0"
+      "-=0.1"
     );
 
     tl.to(
@@ -48,7 +45,14 @@ const Curtains = ({ onAnimationComplete }) => {
         duration: 2,
         ease: "power2.inOut",
       },
-      "<" // start together
+      "<" // start at the same time as left curtain
+    );
+
+    // Seam fades out at the same time curtains start sliding
+    tl.to(
+      seamRef.current,
+      { opacity: 0, duration: 0.5, ease: "power1.out" },
+      "<" // start with curtains slide
     );
   }, [onAnimationComplete]);
 
