@@ -2,12 +2,12 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <header className="bg-gray-100 shadow">
+    <header className="bg-transparent fixed top-0 left-0 w-full z-50">
       <div className="container ">
         <div className="grid navbar-grid grid-cols-3 items-center py-4">
           {/* Left: Home */}
           <div className="text-left">
-            <a href="#home" className="text-gray-700 hover:text-gray-900">
+            <a href="#home" className="text-white hover:text-gray-900">
               Home
             </a>
           </div>
@@ -17,7 +17,7 @@ const Navbar = () => {
 
           {/* Right: About Us */}
           <div className="text-right">
-            <a href="#about" className="text-gray-700 hover:text-gray-900">
+            <a href="#about" className="text-white hover:text-gray-900">
               About Us
             </a>
           </div>
